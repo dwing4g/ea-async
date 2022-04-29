@@ -1084,7 +1084,7 @@ public class Transformer implements ClassFileTransformer
         Label futureIsDoneLabel = isContinued ? switchEntry.futureIsDoneLabel : new Label();
 
 
-        final boolean needsConversion = switchEntry == null || !checkType(switchEntry.frame, COMPLETABLE_FUTURE_TYPE);
+        final boolean needsConversion = false; /// switchEntry == null || !checkType(switchEntry.frame, COMPLETABLE_FUTURE_TYPE);
         if (needsConversion)
         {
             mv.visitMethodInsn(INVOKEINTERFACE, COMPLETION_STAGE_NAME, "toCompletableFuture", "()Ljava/util/concurrent/CompletableFuture;", true);
@@ -1104,7 +1104,7 @@ public class Transformer implements ClassFileTransformer
         // stack: { }
         mv.visitVarInsn(ALOAD, switchEntry.stackToNewLocal[switchEntry.frame.getStackSize() - 1]);
         // stack: { future  }
-        mv.visitMethodInsn(INVOKESTATIC, Type.getType(Function.class).getInternalName(), "identity", "()Ljava/util/function/Function;", true);
+/*///   mv.visitMethodInsn(INVOKESTATIC, Type.getType(Function.class).getInternalName(), "identity", "()Ljava/util/function/Function;", true);
         // stack: { future identity_function }
         // this discards any exception. the exception will be thrown by calling join.
         // the other option is not to use thenCompose and use something more complex.
@@ -1117,7 +1117,7 @@ public class Transformer implements ClassFileTransformer
             mv.visitMethodInsn(INVOKEVIRTUAL, COMPLETABLE_FUTURE_NAME, "exceptionally", "(Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;", false);
         }
         // stack: { new_future }
-
+*/
         // code:    return future.exceptionally(x -> x).thenCompose(x -> _func(state));
 
         pushArguments(mv, switchEntry, lambdaArguments);

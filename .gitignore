@@ -39,3 +39,6 @@ nbdist/
 thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+/classes/
+/*.jar

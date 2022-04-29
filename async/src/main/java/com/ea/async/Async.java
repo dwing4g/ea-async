@@ -30,9 +30,6 @@ package com.ea.async;
 
 import com.ea.async.instrumentation.InitializeAsync;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -79,7 +76,7 @@ public class Async
         InitializeAsync.init();
     }
 
-    private static Logger logger;
+    private static boolean useStdErrLog;
 
     /**
      * This method will behave as a <code>CompletableFuture.join()</code> but will actually cause the
@@ -103,19 +100,13 @@ public class Async
         {
             warning = "Warning: Illegal call to await, the method invoking await must return a CompletableFuture";
         }
-        LoggerFactory.getLogger(Async.class);
-        if (logger == null)
-        {
-            logger = LoggerFactory.getLogger(Async.class);
-        }
-        if (logger.isDebugEnabled())
-        {
-            logger.warn(warning, new Throwable());
-        }
-        else
-        {
-            logger.warn(warning);
-        }
+
+        RuntimeException ex = new RuntimeException(warning);
+        if (!useStdErrLog)
+            throw ex;
+        ex.printStackTrace();
+        useStdErrLog = false;
+
         if (future instanceof CompletableFuture)
         {
             //noinspection unchecked

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ea-async" default="jar">
+	<property name="root" value="."/>
+	<property name="classes" value="${root}/classes"/>
+	<property name="src" value="${root}/async/src/main/java"/>
+	<property name="res" value="${root}/async/src/main/resources"/>
+	<property name="lib" value="${root}/lib"/>
+	<tstamp>
+		<format property="time" pattern="yyyy-MM-dd HH:mm:ss:SSS Z"/>
+	</tstamp>
+	<echo message="ant.java.version = ${ant.java.version}"/><!-- 1.8; 9; 10; 11 -->
+
+	<target name="clean">
+		<delete dir="${classes}"/>
+		<delete file="${root}/ea-async.jar"/>
+		<delete file="${root}/ea-async-src.jar"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${classes}/META-INF"/>
+		<path id="classpath">
+			<fileset dir="${lib}">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+		<javac destdir="${classes}" encoding="utf-8" classpathref="classpath" source="11" target="11" debug="on" debuglevel="lines,vars,source" includeantruntime="false">
+			<compilerarg value="-nowarn"/>
+			<!--compilerarg value="-Xlint:deprecation"/-->
+			<!--compilerarg value="-Xlint:unchecked"/-->
+			<compilerarg value="-XDignore.symbol.file"/><!-- suppress "Sun proprietary api" warning -->
+			<src path="${src}/"/>
+		</javac>
+		<copy todir="${classes}">
+			<fileset dir="${res}"/>
+		</copy>
+		<exec executable="git" output="${classes}/META-INF/ea-async-version.txt">
+			<arg value="log"/>
+			<arg value="-n"/>
+			<arg value="1"/>
+			<arg value="--date=iso"/>
+		</exec>
+		<exec executable="git" output="${classes}/META-INF/ea-async-version.txt" append="true">
+			<arg value="status"/>
+			<arg value="-s"/>
+		</exec>
+	</target>
+
+	<target name="jar" depends="clean, compile">
+		<jar jarfile="${root}/ea-async.jar" basedir="${classes}" level="9">
+			<manifest>
+				<attribute name="Premain-Class" value="com.ea.async.instrumentation.Premain"/>
+				<attribute name="Agent-Class" value="com.ea.async.instrumentation.Agent"/>
+				<attribute name="Main-Class" value="com.ea.async.instrumentation.Main"/>
+				<attribute name="Can-Redefine-Classes" value="true"/>
+				<attribute name="Can-Retransform-Classes" value="true"/>
+				<attribute name="Created-Time" value="${time}"/>
+			</manifest>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-9.3.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-analysis-9.3.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-tree-9.3.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/byte-buddy-agent-1.12.9.jar"/>
+		</jar>
+		<jar jarfile="${root}/ea-async-src.jar" level="9">
+			<manifest>
+				<attribute name="Created-Time" value="${time}"/>
+			</manifest>
+			<fileset dir="${src}/"/>
+		</jar>
+	</target>
+</project>
