@@ -23,7 +23,7 @@
 				<include name="*.jar"/>
 			</fileset>
 		</path>
-		<javac destdir="${classes}" encoding="utf-8" classpathref="classpath" source="11" target="11" debug="on" debuglevel="lines,vars,source" includeantruntime="false">
+		<javac destdir="${classes}" encoding="utf-8" classpathref="classpath" source="8" target="8" debug="on" debuglevel="lines,vars,source" includeantruntime="false">
 			<compilerarg value="-nowarn"/>
 			<!--compilerarg value="-Xlint:deprecation"/-->
 			<!--compilerarg value="-Xlint:unchecked"/-->
@@ -55,10 +55,10 @@
 				<attribute name="Can-Retransform-Classes" value="true"/>
 				<attribute name="Created-Time" value="${time}"/>
 			</manifest>
-			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-9.3.jar"/>
-			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-analysis-9.3.jar"/>
-			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-tree-9.3.jar"/>
-			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/byte-buddy-agent-1.12.9.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-9.7.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-analysis-9.7.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/asm-tree-9.7.jar"/>
+			<zipfileset includes="**/*.class" excludes="**/module-info.class" src="${lib}/byte-buddy-agent-1.14.18.jar"/>
 		</jar>
 		<jar jarfile="${root}/ea-async-src.jar" level="9">
 			<manifest>

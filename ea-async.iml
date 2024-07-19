@@ -11,49 +11,49 @@
       <excludeFolder url="file://$MODULE_DIR$/async/target" />
       <excludeFolder url="file://$MODULE_DIR$/classes" />
     </content>
-    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/asm-9.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-9.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/asm-9.3-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-9.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/asm-tree-9.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-tree-9.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/asm-tree-9.3-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-tree-9.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/asm-analysis-9.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-analysis-9.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/asm-analysis-9.3-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/asm-analysis-9.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/byte-buddy-agent-1.12.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/byte-buddy-agent-1.14.18.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/byte-buddy-agent-1.12.9-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/byte-buddy-agent-1.14.18-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
